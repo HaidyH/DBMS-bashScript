@@ -6,7 +6,7 @@ select opt in "${options[@]}"
 do
     case $opt in
         "List Current Tables")
-            ls -f | grep/ #path of choosen database    
+            ls    
 
             ;;
         "Drop Table")
