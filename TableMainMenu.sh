@@ -21,7 +21,7 @@ do
             #call insert into table script
 
             ;;
-	"Select from Table")
+	    "Select from Table")
 	    #call select from table script
 
 	    ;;
@@ -29,7 +29,7 @@ do
 	    #call delete from table script
 
 	    ;;
-	"Update Table")
+	    "Update Table")
             #call update table script
 
 	    ;;
