@@ -6,7 +6,8 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Create DataBase")
-            #call create database script
+            pwd
+			bash ./createDB.sh
 
             ;;
         "List Current DataBases")
@@ -14,7 +15,8 @@ do
 
             ;;
         "Connect to DataBase")
-            #callconnect to Database script
+            pwd
+			bash ./connectDB.sh
 
             ;;
         "Drop DataBase")
@@ -28,4 +30,3 @@ do
         *) echo "invalid option $REPLY";;
     esac
 done
-

@@ -6,13 +6,14 @@ select opt in "${options[@]}"
 do
     case $opt in
         "List Current DataBases")
-            ls -f | grep/ ./ITIDataBases    #in this folder we will save the new databases
+            ls ./ITIDataBases    #in this folder we will save the new databases
 
             ;;
         "Connect to DataBase")
             read -p "Enter DataBase Name : " DBname
-            if [ -d $DBname ]; then
+            if [ -e ./ITIDataBases/$DBname ]; then
                     cd ./ITIDataBases/$DBname
+                    pwd
 		    #then we should call tables main menu script
             else
                     echo "Error DataBase Not Found"
