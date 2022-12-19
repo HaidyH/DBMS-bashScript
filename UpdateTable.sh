@@ -16,7 +16,7 @@ do
 		    ls $Tname
 		    read -p "Enter File Name: " Fname
 		    if [ -e $Fname ]; then
-			    gedit $Fname
+			    
 		    else
 			    echo "File Not Found"
                     

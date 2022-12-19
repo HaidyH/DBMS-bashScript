@@ -6,7 +6,7 @@ select opt in "${options[@]}"
 do
     case $opt in
         "List Current DataBases")
-            ls -f | grep/ ./ITIDataBases    #in this folder we will save the new databases
+            ls ./ITIDataBases    #in this folder we will save the new databases
 
             ;;
         "Create New DataBase")
