@@ -2,31 +2,6 @@
 
 #function to check if primary key or not
 
-pk="false"
-datatype="int"
-
-ispk(){
-    echo "Is the feild is primary key ?"
-    options=("if yes press 1" "if no press 2")
-    select opt in "${options[@]}"
-    do
-    case $opt in
-        "if yes press 1")
-            echo "yes"
-            pk="true"
-            break;
-            ;;
-        "if no press 2")
-            echo "no"
-            pk="false"
-            break;
-            ;;
-        *) echo "invalid option $REPLY please try again";;
-    esac
-    done
-
-}
-
 datatypeis(){
     echo " what is the data type of the field ?"
     options=("if int press 1" "if string press 2")
@@ -35,12 +10,14 @@ datatypeis(){
     case $opt in
         "if int press 1")
             echo "int"
-            datatype="int"
+            datatype="int"           
+            echo "$datatype:" >> ./databases/$tableName 
             break;
             ;;
         "if string press 2")
             echo "string"
             datatype="string"
+            echo "datatype is $datatype " >> ./databases/$tableName 
             break;
             ;;
         *) echo "invalid option $REPLY please try again";;
@@ -52,13 +29,34 @@ datatypeis(){
 
 read -p "Enter table name you want to create : " tableName
 
+#function to test table name regex
+namingRegex(){
+    while (true)
+    do
+        if [[ $tableName =~ ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] ; then
+            break;
+        else
+            echo -e "\n Please Enter A Vaild Name (only letters preferred) " 
+            read -p "Enter table name you want to create : " tableName
+        fi
+    done
+}
 
+namingRegex
 
-if [ -d $tableName ] ;then
+pkname(){
+    read -p "enter name of primary key column ?" pk
+    echo "pk is $pk " >> ./databases/$tableName 
+    datatypeis
+    echo $pk >> ./databases/$tableName
+}
+
+if [ -f $tableName ] ;then
     echo "Table with name $tableName already exists" 
 else 
-    mkdir $tableName
+    touch databases/$tableName
 
+#check num of column is exist and integer
     while true
     do
     read -p "Enter number of coloumns : " columnsNum
@@ -66,35 +64,28 @@ else
         break
     fi
     done
-    declare -i i=1
+
+    pkname
+    declare -i i=2
     while (( i < $columnsNum+1 ))
     do
         read -p "Enter column $i name : " columnName; 
-        touch ./$tableName/$columnName
-        ispk
-        echo $pk
-        if [[ $pk -eq "true" ]] ;then
+        # datatypeis
+        awk -v columnName="$columnName" -v tableName="$tableName" -v columnsNum=$columnsNum '
+        BEGIN{FS=":"} #start Loop # Seprator
+        {
+        i=1
+        while (i<=columnsNum){
+        $i="column"
+        i++;
+        }
+        } #Body Loop
+        END{print "columnName:" >> /databases/tableName} #End Loop ' ./databases/$tableName
 
-            echo -n "pk = true" > ./$tableName/$columnName
-        
-        elif [[ $pk -eq "false" ]] ;then
-            echo -n "pk = false " > ./$tableName/$columnName
-        fi
-        datatypeis
-        echo $datatype
-        if [[ $datatype -eq "int" ]] ;then
-
-            echo -n "datatype = int" > ./$tableName/$columnName
-
-        elif [[ $datatype -eq "string" ]] ;then
-            echo -n "datatype = string" > ./$tableName/$columnName
-        fi
+        # echo "$columnName:" >> ./$tableName
         i=($i+1)
     done
 fi
-
-
-
 
 
 
