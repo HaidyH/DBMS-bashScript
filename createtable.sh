@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+export LC_COLLATE=C
+shopt -s extglob
+
+
 #function to check if primary key or not
 
 datatypeis(){
@@ -46,9 +50,13 @@ namingRegex
 
 pkname(){
     read -p "enter name of primary key column ?" pk
-    echo "pk:$pk" >> ./databases/$tableName-metadata
-    datatypeis
-    echo -n $pk":" >> ./databases/$tableName
+    if [ $pk ];then 
+        echo "pk:$pk" >> ./databases/$tableName-metadata
+        datatypeis
+        echo -n $pk":" >> ./databases/$tableName
+    else
+        pkname
+    fi
 }
 
 if [ -f databases/$tableName ] ;then
@@ -72,29 +80,12 @@ else
     while (( i < $columnsNum+1 ))
     do
         read -p "Enter column $i name : " columnName; 
+        if [ $columnName ] ; then
         datatypeis
         echo -n $columnName":" >> ./databases/$tableName
         i=($i+1)
+        else
+            continue
+        fi
     done
-    # awk -v columnsNum=$columnsNum '
-    # BEGIN {FS=":" , NF=columnsNum}
-
-
-    
-    # END {} ' /$tableName
 fi
-
-
-
-
-
-        # awk -v columnName="$columnName" -v tableName="$tableName" -v columnsNum=$columnsNum '
-        # BEGIN{FS=":"} #start Loop # Seprator
-        # {
-        # i=1
-        # while (i<=columnsNum){
-        # $i="column"
-        # i++;
-        # }
-        # } #Body Loop
-        # END{print "columnName:" >> /databases/tableName} #End Loop ' ./databases/$tableName
