@@ -14,7 +14,8 @@ do
                 sed '$xd' $tableName
             else
                 echo "column not found"
-
+            fi
+            
             ;;
         "Delete all Records")
             sed '1,$d' $tableName
