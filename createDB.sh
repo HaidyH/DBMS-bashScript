@@ -21,17 +21,17 @@ select opt in "${options[@]}"
 do
     case $opt in
         "List Current DataBases")
-            ls ./databases    #in this folder we will save the new databases
+            ls databases    #in this folder we will save the new databases
 
             ;;
         "Create New DataBase")
             read -p "Enter New DataBase Name : " DBname
             namingRegex
+
 	    if [ -e $DBname ]; then
 		    echo "DataBase already Exists"
 	    else
-		    mkdir ./databases/$DBname
-		    cd ./databases/$DBname
+		    mkdir databases/$DBname
 		    echo "DataBase Successfully Created"
 		    pwd
 		    bash ./TableMainMenu.sh
@@ -39,7 +39,7 @@ do
 
 	    ;;
         "Main Menu")
-            bash ./DBMainMenu
+            bash ./DBMainMenu.sh
 
             ;;
         "Exit")

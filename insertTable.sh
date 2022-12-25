@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #insert 1:haidy:1000$:devops:vois   into   id:name:salary:job:company
-mydb="haidydatabase"
+read -p "what is database name " mydb
 read -p "enter table name you want insert into " tableName
  metadata="$tableName-metadata"
  declare -i NF=0
@@ -56,13 +56,14 @@ selectoption(){
         "insert by row")
             echo "NOTE : BE CAREFUL INSERT ROW MUST BE IN SAME ORDER AS FOLLOWS OR YOU LOSE DATA CONSISTNSY"          
             insertRow
-            break;
+            echo " "
+            bash ./TableMainMenu.sh
             ;;
         "insert one by one")
             insertspecefic
-      
-
-            break;
+            echo " 1) Create Table       3) Drop Table         5) Select from Table  7) Update Table
+                   2) List Table         4) Insert into Table  6) Delete from Table  8) Exit"
+            bash ./TableMainMenu.sh
             ;;
         *) echo "invalid option $REPLY please try again" 
            echo "choose the way of insert you wanna use"
@@ -93,8 +94,8 @@ else
 fi
 
 
-
-
+echo " "
+bash ./TableMainMenu.sh
 
 # echo $metadata
 

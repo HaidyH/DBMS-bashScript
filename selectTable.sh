@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 read -p "enter table name you want select " tableName
-mydb="haidydatabase"
+read -p "what is database name " mydb
 selectcolumn(){
     read -p "please enter column you want to select " columnName
     s=$(sed -n /$columnName/p databases/$mydb/$tableName)
@@ -74,3 +74,5 @@ selecttable(){
 }
 
 selecttable
+echo " "
+bash ./TableMainMenu.sh

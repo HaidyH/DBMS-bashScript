@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Welcome to Table Main Menu :)"
 PS3='Please enter your choice: '
-options=("Create Table" "List Current Tables" "Drop Table" "Insert into Table" "Select from Table" "Delete from Table" "Update Table" "Exit")
+options=("Create Table" "List Table" "Drop Table" "Insert into Table" "Select from Table" "Delete from Table" "Update Table" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -9,7 +9,7 @@ do
             bash ./createtable.sh
 
             ;;
-        "List Current Tables")
+        "List Table")
             bash ./listtable.sh
 
             ;;
