@@ -2,8 +2,8 @@
 
 read -p "Enter table name you want to list : " tableName
 
-if [ -d $tableName ] ;then
-    ls $tableName
+if [ -f databases/$tableName ] ;then
+    cat databases/$tableName
 
 else 
        echo "Table with name $tableName Not exists please try again or exit"
@@ -14,8 +14,8 @@ else
             "press 1 to try again")
             echo "try"
             read -p "Enter table name you want to list : " tableName
-            if [ -d $tableName ] ;then
-                ls $tableName
+            if [ -f databases/$tableName ] ;then
+                cat databases/$tableName
                 break
             else 
                 echo "Table with name $tableName Not exists please try again or exit"
