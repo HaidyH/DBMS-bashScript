@@ -11,10 +11,11 @@ do
             ;;
         "Connect to DataBase")
             read -p "Enter DataBase Name : " DBname
-            if [ -e ./databases/$DBname ]; then
-                    cd ./databases/$DBname
-                    pwd
-		            bash ./TableMainMenu.sh
+            if [ -e databases/$DBname ]; then
+                    # cd ./databases/$DBname
+                    # pwd
+                    echo "connected sucessfully"
+                    source TableMainMenu.sh
             else
                     echo "Error DataBase Not Found"
             fi

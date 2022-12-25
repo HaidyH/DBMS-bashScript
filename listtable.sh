@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-mydb="haidydatabase"
+read -p "what is database name " mydb
 read -p "Enter table name you want to list : " tableName
 
 if [ -f databases/$mydb/$tableName ] ;then
@@ -35,3 +35,5 @@ else
     done 
 
 fi
+echo " "
+bash ./TableMainMenu.sh

@@ -1,8 +1,8 @@
 #!/usr/bin/bash
-mydb="haidydatabase"
+
 export LC_COLLATE=C
 shopt -s extglob
-
+read -p "what is database name " mydb
 
 #function to check if primary key or not
 
@@ -89,3 +89,5 @@ else
         fi
     done
 fi
+echo " "
+bash ./TableMainMenu.sh
