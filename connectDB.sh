@@ -14,14 +14,14 @@ do
             if [ -e ./ITIDataBases/$DBname ]; then
                     cd ./ITIDataBases/$DBname
                     pwd
-		    #then we should call tables main menu script
+		            bash ./TableMainMenu.sh
             else
                     echo "Error DataBase Not Found"
             fi
 
             ;;
         "Main Menu")
-            #call the main menu script
+            bash ./DBMainMenu.sh
 
             ;;
         "Exit")

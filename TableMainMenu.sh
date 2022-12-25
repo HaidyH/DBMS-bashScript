@@ -6,31 +6,31 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Create Table")
-            #call create table script
+            bash ./createtable.sh
 
             ;;
         "List Current Tables")
-            #call list tables script
+            bash ./listtable.sh
 
             ;;
         "Drop Table")
-            #call drop table script
+            bash ./DropTable.sh
 
             ;;
         "Insert into Table")
-            #call insert into table script
+            bash ./insertTable.sh
 
             ;;
 	    "Select from Table")
-	    #call select from table script
+	        bash ./selectTable.sh
 
 	    ;;
         "Delete from Table")
-	    #call delete from table script
+	        bash ./DeleteTable.sh
 
 	    ;;
 	    "Update Table")
-            #call update table script
+            bash ./UpdateTable.sh
 
 	    ;;
         "Exit")

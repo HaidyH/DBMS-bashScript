@@ -1,5 +1,7 @@
 #!/bin/bash
 echo "Creating DataBase...."
+export LC_COLLATE=C
+shopt -s extglob
 PS3='Please enter your choice: '
 options=("List Current DataBases" "Create New DataBase" "Main Menu"  "Exit")
 select opt in "${options[@]}"
