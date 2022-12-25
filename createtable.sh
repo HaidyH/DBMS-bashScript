@@ -46,7 +46,7 @@ namingRegex
 
 pkname(){
     read -p "enter name of primary key column ?" pk
-    echo "pk is $pk " >> ./databases/$tableName-metadata
+    echo "pk:$pk" >> ./databases/$tableName-metadata
     datatypeis
     echo -n $pk":" >> ./databases/$tableName
 }
