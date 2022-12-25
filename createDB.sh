@@ -9,7 +9,7 @@ select opt in "${options[@]}"
 do
     case $opt in
         "List Current DataBases")
-            ls ./ITIDataBases    #in this folder we will save the new databases
+            ls ./databases    #in this folder we will save the new databases
 
             ;;
         "Create New DataBase")
@@ -17,8 +17,8 @@ do
 	    if [ -e $DBname ]; then
 		    echo "DataBase already Exists"
 	    else
-		    mkdir ./ITIDataBases/$DBname
-		    cd ./ITIDataBases/$DBname
+		    mkdir ./databases/$DBname
+		    cd ./databases/$DBname
 		    echo "DataBase Successfully Created"
 		    pwd
 		    bash ./TableMainMenu.sh

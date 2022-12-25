@@ -19,7 +19,7 @@ selectcolumn(){
                 }
                 i++
             }
-            ' ITIDataBases/$tableName
+            ' databases/$tableName
     
     else
         echo "coloumn not found"

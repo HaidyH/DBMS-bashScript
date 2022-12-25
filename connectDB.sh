@@ -6,13 +6,13 @@ select opt in "${options[@]}"
 do
     case $opt in
         "List Current DataBases")
-            ls ./ITIDataBases    #in this folder we will save the new databases
+            ls ./databases    #in this folder we will save the new databases
 
             ;;
         "Connect to DataBase")
             read -p "Enter DataBase Name : " DBname
-            if [ -e ./ITIDataBases/$DBname ]; then
-                    cd ./ITIDataBases/$DBname
+            if [ -e ./databases/$DBname ]; then
+                    cd ./databases/$DBname
                     pwd
 		            bash ./TableMainMenu.sh
             else
