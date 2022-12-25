@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #insert 1:haidy:1000$:devops:vois   into   id:name:salary:job:company
-
+mydb="haidydatabase"
 read -p "enter table name you want insert into " tableName
  metadata="$tableName-metadata"
  declare -i NF=0
@@ -13,22 +13,22 @@ read -p "enter table name you want insert into " tableName
     i++
     }
     }
-    ' databases/$metadata)
+    ' databases/$mydb/$metadata)
 
 
 insertspecefic(){
 
 declare -i i=1
-echo  "" >> ./databases/$tableName
+echo  "" >> ./databases/$mydb/$tableName
 while (true)
 do
     if ((  $i != 5-1 ));then
     
-    s=$(sed -n /name/p databases/$tableName | awk -F: -v i=$i '{print $i}')
+    s=$(sed -n /name/p databases/$mydb/$tableName | awk -F: -v i=$i '{print $i}')
     echo -n "please enter $s = "
     read -p "" input
     
-    echo -n $input":" >> ./databases/$tableName
+    echo -n $input":" >> ./databases/$mydb/$tableName
     i=$i+1
     else
         exit
@@ -39,11 +39,11 @@ done
 
 insertRow(){
     echo "please enter you data in order as follows and make sure that primary key is a unique value your primary key is $pk"
-    s=$(sed -n /name/p databases/$tableName)
+    s=$(sed -n /name/p databases/$mydb/$tableName)
     echo "insert into $s"
     read -p " " newRow
-    # echo  "" >> ./databases/$tableName
-    echo -n $newRow":" >> ./databases/$tableName
+    echo  "" >> ./databases/$mydb/$tableName
+    echo -n $newRow":" >> ./databases/$mydb/$tableName
     }
 
 selectoption(){
@@ -73,7 +73,7 @@ selectoption(){
 
     }
 
-if [ -f databases/$tableName ] ;then
+if [ -f databases/$mydb/$tableName ] ;then
     selectoption
 
 
@@ -82,7 +82,7 @@ else
     read -p "enter table name you want insert into : " tableName
     while (true)
      do
-     if [ -f databases/$tableName ] ;then
+     if [ -f databases/$mydb/$tableName ] ;then
         selectoption
         break;
     else

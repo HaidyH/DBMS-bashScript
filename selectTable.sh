@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 read -p "enter table name you want select " tableName
-
+mydb="haidydatabase"
 selectcolumn(){
     read -p "please enter column you want to select " columnName
-    s=$(sed -n /$columnName/p databases/$tableName)
+    s=$(sed -n /$columnName/p databases/$mydb/$tableName)
         if [[ $columnName ]] && [[ $s ]];then
 
             echo "select $columnName from $tableName"
@@ -20,7 +20,7 @@ selectcolumn(){
             }
             print $h
             }
-            ' databases/$tableName
+            ' ./databases/$mydb/$tableName
     
     else
         echo "coloumn not found"
@@ -33,7 +33,7 @@ selectcolumn(){
 
 selecttable(){
 
-    if [ -f databases/$tableName ] ;then
+    if [ -f databases/$mydb/$tableName ] ;then
     echo " choose do you want select all or column?"
     options=("if All 1" "if column 2")
     select opt in "${options[@]}"
@@ -41,7 +41,7 @@ selecttable(){
     case $opt in
         "if All 1")
             echo "Select all from $tableName"          
-            cat databases/$tableName
+            cat databases/$mydb/$tableName
             break;
             ;;
         "if column 2")
@@ -61,7 +61,7 @@ selecttable(){
         read -p "Enter table name you want to select : " tableName
             while (true)
             do
-                if [ -f databases/$tableName ] ;then
+                if [ -f databases/$mydb/$tableName ] ;then
                 selecttable
                 break;
             else

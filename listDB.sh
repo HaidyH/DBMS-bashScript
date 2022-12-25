@@ -1,7 +1,8 @@
 #!/usr/bin/bash
-read -p "please enter the name of database table you want to list : " x
-if [[ -d  $x ]];then
-    ls  $x
+
+read -p "please enter the name of database you want to list : " x
+if [[ -d  databases/$x ]];then
+    ls  databases/$x
 else
     echo "please enter a valid databse table"        
 fi
