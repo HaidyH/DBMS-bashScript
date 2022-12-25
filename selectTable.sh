@@ -3,7 +3,7 @@ read -p "enter table name you want select " tableName
 
 selectcolumn(){
     read -p "please enter column you want to select " columnName
-    s=$(sed -n /$columnName/p databases/emplyee)
+    s=$(sed -n /$columnName/p databases/$tableName)
         if [[ $columnName ]] && [[ $s ]];then
 
             echo "select $columnName from $tableName"
@@ -11,7 +11,7 @@ selectcolumn(){
             BEGIN{FS=":" ; columnName=columnName ; h=0}
             {
             i=1
-            while(i<=5){ 
+            while(i<=NF){ 
             if ($i==columnName)
             {
             h=i
@@ -34,7 +34,6 @@ selectcolumn(){
 selecttable(){
 
     if [ -f databases/$tableName ] ;then
-    touch databases/$tableName
     echo " choose do you want select all or column?"
     options=("if All 1" "if column 2")
     select opt in "${options[@]}"
@@ -59,7 +58,7 @@ selecttable(){
     done
     else
         echo "table not exist"
-        read -p "Enter table name you want to create : " tableName
+        read -p "Enter table name you want to select : " tableName
             while (true)
             do
                 if [ -f databases/$tableName ] ;then
@@ -67,9 +66,9 @@ selecttable(){
                 break;
             else
                 echo "table not exist"
-                read -p "Enter table name you want to create : " tableName
+                read -p "Enter table name you want to select: " tableName
                 fi
-    done
+            done
     fi
 
 }
