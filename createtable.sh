@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-
+mydb="haidydatabase"
 export LC_COLLATE=C
 shopt -s extglob
 
@@ -15,13 +15,13 @@ datatypeis(){
         "if int press 1")
             echo "int"
             datatype="int"           
-            echo -n $datatype":" >> ./databases/$tableName-metadata
+            echo -n $datatype":" >> ./databases/$mydb/$tableName-metadata
             break;
             ;;
         "if string press 2")
             echo "string"
             datatype="string"
-            echo -n $datatype":" >> ./databases/$tableName-metadata
+            echo -n $datatype":" >> ./databases/$mydb/$tableName-metadata
             break;
             ;;
         *) echo "invalid option $REPLY please try again";;
@@ -51,19 +51,19 @@ namingRegex
 pkname(){
     read -p "enter name of primary key column ?" pk
     if [ $pk ];then 
-        echo "pk:$pk" >> ./databases/$tableName-metadata
+        echo "pk:$pk" >> ./databases/$mydb/$tableName-metadata
         datatypeis
-        echo -n $pk":" >> ./databases/$tableName
+        echo -n $pk":" >> ./databases/$mydb/$tableName
     else
         pkname
     fi
 }
 
-if [ -f databases/$tableName ] ;then
+if [ -f databases/$mydb/$tableName ] ;then
     echo "Table with name $tableName already exists" 
 else 
-    touch databases/$tableName
-    touch databases/$tableName-metadata
+    touch databases/$mydb/$tableName
+    touch databases/$mydb/$tableName-metadata
 
 
 #check num of column is exist and integer
@@ -82,7 +82,7 @@ else
         read -p "Enter column $i name : " columnName; 
         if [ $columnName ] ; then
         datatypeis
-        echo -n $columnName":" >> ./databases/$tableName
+        echo -n $columnName":" >> ./databases/$mydb/$tableName
         i=($i+1)
         else
             continue
