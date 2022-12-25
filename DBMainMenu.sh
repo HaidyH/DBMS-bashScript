@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Welcome to DataBase Main Menu :)"
 PS3='Please enter your choice: '
-options=("Create DataBase" "List Current DataBases" "Connect to DataBase"  "Exit")
+options=("Create DataBase" "List Current DataBases" "Connect to DataBase" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -11,16 +11,16 @@ do
 
             ;;
         "List Current DataBases")
-            #call list database script
+            bash ./listDB.sh
 
             ;;
         "Connect to DataBase")
-            pwd
 			bash ./connectDB.sh
+            pwd
 
             ;;
         "Drop DataBase")
-            #call drop database script
+            bash ./dropDB.sh
 
             ;;
         "Exit")

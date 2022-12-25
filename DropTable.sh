@@ -12,7 +12,7 @@ do
         "Drop Table")
             read -p "Enter Table Name : " Tname
             if [ -e $Tname ]; then
-                    rm -r $Tname
+                    rm $Tname
 		    echo "Table Dropped Successfully"
             else
                     echo "Table Not Found"
@@ -20,7 +20,7 @@ do
 
             ;;
         "Table Main Menu")
-            #call the table main menu script
+            bash ./TableMainMenu.sh
 
             ;;
         "Exit")
