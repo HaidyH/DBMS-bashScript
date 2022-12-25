@@ -1,11 +1,29 @@
 #!/bin/bash
 echo "Updating Record in Table...."
-read -p "enter table name you want to update in it : " tableName
-read -p "please enter number of column you want to update : " x
-s=$(sed -n /$x/p databases/$tableName)
-if [[ $x ]] && [[ $s ]];then
-    read -p "please enter the new value : " x
+read -p "enter table name you want to update : " tableName
+
+selectcolumn(){
+    read -p "please enter column you want to update : " columnName
+    read -p "please enter the new data : " newdata
+    s=$(sed -n /$columnName/p databases/$tableName)
+        if [[ $columnName ]] && [[ $s ]];then
+
+            echo "select $columnName from $tableName"
+            awk -v columnName=$columnName '
+            BEGIN{FS=":" ; columnName=columnName ; h=0}
+            {
+            i=1;
+            while(i<=NF){
+                if($i == $columnName){
+                    $i=$newdata;
+                }
+                i++
+            }
+            ' ITIDataBases/$tableName
     
-    
-else
-    echo "column not found"
+    else
+        echo "coloumn not found"
+        selectcolumn
+    fi
+
+}
