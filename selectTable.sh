@@ -46,7 +46,6 @@ selecttable(){
             break;
             ;;
         "if column 2")
-            echo "colum"
             selectcolumn
       
 
