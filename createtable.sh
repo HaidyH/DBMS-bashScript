@@ -11,13 +11,13 @@ datatypeis(){
         "if int press 1")
             echo "int"
             datatype="int"           
-            echo "$datatype:" >> ./databases/$tableName 
+            echo -n $datatype":" >> ./databases/$tableName-metadata
             break;
             ;;
         "if string press 2")
             echo "string"
             datatype="string"
-            echo "datatype is $datatype " >> ./databases/$tableName 
+            echo -n $datatype":" >> ./databases/$tableName-metadata
             break;
             ;;
         *) echo "invalid option $REPLY please try again";;
@@ -46,15 +46,17 @@ namingRegex
 
 pkname(){
     read -p "enter name of primary key column ?" pk
-    echo "pk is $pk " >> ./databases/$tableName 
+    echo "pk is $pk " >> ./databases/$tableName-metadata
     datatypeis
-    echo $pk >> ./databases/$tableName
+    echo -n $pk":" >> ./databases/$tableName
 }
 
-if [ -f $tableName ] ;then
+if [ -f databases/$tableName ] ;then
     echo "Table with name $tableName already exists" 
 else 
     touch databases/$tableName
+    touch databases/$tableName-metadata
+
 
 #check num of column is exist and integer
     while true
@@ -70,24 +72,29 @@ else
     while (( i < $columnsNum+1 ))
     do
         read -p "Enter column $i name : " columnName; 
-        # datatypeis
-        awk -v columnName="$columnName" -v tableName="$tableName" -v columnsNum=$columnsNum '
-        BEGIN{FS=":"} #start Loop # Seprator
-        {
-        i=1
-        while (i<=columnsNum){
-        $i="column"
-        i++;
-        }
-        } #Body Loop
-        END{print "columnName:" >> /databases/tableName} #End Loop ' ./databases/$tableName
-
-        # echo "$columnName:" >> ./$tableName
+        datatypeis
+        echo -n $columnName":" >> ./databases/$tableName
         i=($i+1)
     done
+    # awk -v columnsNum=$columnsNum '
+    # BEGIN {FS=":" , NF=columnsNum}
+
+
+    
+    # END {} ' /$tableName
 fi
 
 
 
 
 
+        # awk -v columnName="$columnName" -v tableName="$tableName" -v columnsNum=$columnsNum '
+        # BEGIN{FS=":"} #start Loop # Seprator
+        # {
+        # i=1
+        # while (i<=columnsNum){
+        # $i="column"
+        # i++;
+        # }
+        # } #Body Loop
+        # END{print "columnName:" >> /databases/tableName} #End Loop ' ./databases/$tableName
