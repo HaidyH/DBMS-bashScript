@@ -20,12 +20,12 @@ do
 		    cd ./ITIDataBases/$DBname
 		    echo "DataBase Successfully Created"
 		    pwd
-		    #then we should call the create table script
+		    bash ./TableMainMenu.sh
 	    fi
 
 	    ;;
         "Main Menu")
-            #call the main menu script
+            bash ./DBMainMenu
 
             ;;
         "Exit")
