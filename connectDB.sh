@@ -15,7 +15,7 @@ do
                     # cd ./databases/$DBname
                     # pwd
                     echo "connected sucessfully"
-                    source TableMainMenu.sh
+                    bash ./TableMainMenu.sh
             else
                     echo "Error DataBase Not Found"
             fi
