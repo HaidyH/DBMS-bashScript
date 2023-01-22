@@ -3,8 +3,7 @@ To Use this DataBase Engine :-
 
 
 
-git clone https://github.com/OmarHamroush6/Bash_Database_Engine.git
-
+git clone https://github.com/HaidyH/DBMS-bashScript.git
 
 
 then run this script :          bash ./DBMainMenu.sh
